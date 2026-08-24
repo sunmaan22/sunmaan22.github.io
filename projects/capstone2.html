@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiDAR-CCTV 융합 디지털 트윈 안전 모니터링 — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav>
+  <a href="../index.html" class="tag">← HOME</a>
+  <a href="../index.html#stack">스택</a>
+  <a href="guide-robot.html">안내로봇</a>
+  <a href="capstone2.html" class="active">디지털트윈</a>
+  <a href="xycar.html">사이카</a>
+  <a href="shark.html">SHARK</a>
+  <a href="fma24.html">FMA·24</a>
+  <a href="fma25.html">FMA·25</a>
+</nav>
+
+<section class="page-hero">
+  <a href="../index.html" class="back-link">← 포트폴리오로 돌아가기</a>
+  <h1>멀티센서 기반 디지털 트윈 안전 모니터링 시스템</h1>
+  <div class="role">센서 퓨전 / 엣지 AI / Personal Cam 웨어러블 · 융합캡스톤디자인2</div>
+</section>
+
+<section class="project dark">
+  <div class="project-inner">
+
+    <div class="metrics-row reveal-group">
+      <div class="metric"><span class="num mono count-up">0.1s</span><span class="label">엣지 실시간 탐지 지연</span></div>
+      <div class="metric"><span class="num mono">On-device</span><span class="label">GPU 서버 없이 저전력 NPU 추론</span></div>
+      <div class="metric"><span class="num mono">3D→2D</span><span class="label">LiDAR·CCTV 융합 위치 추정</span></div>
+    </div>
+
+    <div class="stack-block reveal">
+      <h4>Stack</h4>
+      <div class="chip-row reveal-group">
+        <span class="chip">Raspberry Pi 5</span>
+        <span class="chip">DEEPX NPU (ONNX → DX-COM → .dxnn)</span>
+        <span class="chip">YOLOv8-n INT8</span>
+        <span class="chip">BYTETracker</span>
+        <span class="chip">RPLIDAR A2M12</span>
+        <span class="chip">Cartographer SLAM (ROS2)</span>
+        <span class="chip">Nav2 / AMCL</span>
+        <span class="chip">MQTT (Node.js / MongoDB)</span>
+        <span class="chip">Hailo-8L (.hef)</span>
+        <span class="chip">IMX500</span>
+      </div>
+    </div>
+
+    <div class="prose-block prose-full">
+
+      <div class="prose-section reveal">
+        <h4>배경 · 목표</h4>
+        <p>작업자 안전 확보와 관리 효율성 향상을 목표로, LiDAR와 CCTV를 융합해 작업자의 안전 상황을 실시간으로 감지하고 관리자가 한눈에 현장을 파악할 수 있는 지능형 디지털 트윈 시스템을 구축했습니다. 핵심 목표는 <strong>작업자·안전모 착용 여부 탐지</strong>, <strong>LiDAR+CCTV 위치·행동 데이터 통합</strong>, <strong>음성 기반 명령 인터페이스</strong>, <strong>로컬 LLM 기반 상황 요약</strong>, <strong>즉각적인 음성 피드백</strong> 다섯 가지였습니다.</p>
+      </div>
+
+      <div class="prose-section reveal">
+        <h4>아키텍처 — 센서 → NPU 추론 → 융합 → 관제</h4>
+        <div class="diagram-wrap">
+<pre class="mermaid">
+flowchart LR
+    CCTV["Hikvision RTSP CCTV<br/>640x480 H.264"] --> GSCAM["gscam (ROS2)"]
+    GSCAM --> DXAPP["DeepX NPU<br/>YOLOv8-n INT8 + BYTETracker"]
+    DXAPP -- "UDS Datagram" --> BRIDGE["DxBridge 노드"]
+    BRIDGE -- "/dx/detections" --> FUSION["LiDAR-CCTV 융합<br/>PersonGatedWithID"]
+    LIDAR["RPLIDAR A2M12<br/>/scan"] --> FUSION
+    FUSION -- "map frame TF2" --> MAPTF["PersonWithIDToMap"]
+    MAPTF -- "MQTT JSON" --> DASH["Qt 대시보드 · Node.js/MongoDB"]
+</pre>
+        </div>
+        <p>모든 센서의 기준 좌표계를 Map Frame으로 통일하는 <strong>간접 정합(Indirect Calibration)</strong> 방식을 택했습니다. 2D LiDAR로 Cartographer SLAM 지도를 생성해 Raspberry Pi의 Nav2 map_server에 배포하고, AMCL로 실시간 위치를 추정합니다. 카메라는 top-down 설치 특성상 pitch 보정이 정합 정확도에 가장 큰 영향을 미쳐, translation은 실측, rotation은 투영 피드백 기반으로 반복 미세조정했습니다.</p>
+      </div>
+
+      <div class="prose-section reveal">
+        <h4>핵심 구현</h4>
+        <h5>DeepX NPU 추론 파이프라인</h5>
+        <p>YOLOv8-n을 커스텀 데이터셋(작업자·헬멧·안전조끼)으로 학습해 ONNX로 변환하고, DX-COM 컴파일러로 DXNN 바이너리(FP32/INT8)를 생성했습니다. 실제 현장 CCTV에서 추출한 189장으로 INT8 캘리브레이션을 수행해 정확도를 유지하면서 엣지 디바이스에 최적화했습니다. 결과는 BYTETracker와 결합해 프레임마다 <code>(x, y, w, h, score, class_id, track_id)</code> 레코드로 산출되며, UDS(Unix Domain Socket) 기반 브리지 노드(DxBridge)가 이를 ROS2 <code>vision_msgs/Detection2DArray</code>로 변환합니다.</p>
+
+        <h5>LiDAR-카메라 융합 및 PPE 판정</h5>
+        <p>LiDAR 점군을 카메라 좌표계로 투영해 각 사람 bbox 내부의 점들만 게이팅하고, <strong>이상치에 강건한 중앙값(median)</strong>을 대표 위치로 사용합니다. 안전모는 bbox 상단 영역 포함 여부, 안전조끼는 IoU 기준으로 판정하며, 순간적인 탐지 누락이 즉시 "미착용"으로 오판되지 않도록 track_id별 <strong>temporal smoothing</strong>(연속 3프레임 이상 누락 시에만 상태 전환)을 적용했습니다.</p>
+
+        <h5>Map 좌표 변환 및 MQTT 전송</h5>
+        <p>TF2로 작업자 위치를 laser frame에서 map frame으로 변환한 뒤, track_id를 고정 슬롯 이름(작업자A/B/C)에 매핑해 대시보드에서 동일 인물이 계속 같은 라벨로 보이도록 설계했습니다. 슬롯이 모두 찬 상태에서 새 track_id가 들어오면 "미상인원"으로 안전하게 처리하고, 서버 부하를 고려해 5Hz로 전송 주기를 제한했습니다.</p>
+
+        <h5>Personal Cam — 웨어러블 서브프로젝트</h5>
+        <p>같은 캡스톤 트랙에서 IMX500 AI 카메라와 Hailo-8L을 연동한 웨어러블 카메라도 함께 개발했습니다. MediaPipe로 손동작(제스처) 기반 근태 핫키를 구현하고, Hailo Pose Estimation으로 낙상을 감지해 관리자에게 텔레그램 알림을 보내며, 하루 마무리 시 로컬 LLM(Ollama)이 자세·이벤트 데이터를 분석해 관리자용/근로자 건강관리용 리포트를 각각 생성하고 SMTP로 발송하는 파이프라인을 구축했습니다.</p>
+      </div>
+
+      <div class="prose-section reveal">
+        <h4>결과 및 배운 점</h4>
+        <p>H.265 메인스트림 대신 H.264 서브스트림을 채택하고 NTP 동기화로 카메라·LiDAR 간 타임스탬프를 일치시키는 등, <strong>정확도보다 실시간성과 안정성을 우선해야 하는 엣지 시스템 특유의 트레이드오프</strong>를 다루는 경험을 했습니다. 위험구역(Warn Zone) 판정 같은 규칙 엔진은 이번 단계에서는 대시보드 확장 포인트로 남겨두고, 센서 퓨전부터 관제 데이터 파이프라인까지 신뢰성 있게 완성하는 데 집중했습니다.</p>
+      </div>
+
+      <a class="repo-link" href="https://github.com/sunmaan22/personal_cam" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C7.5 2.8 6.4 3.1 6.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 5 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+        GitHub — personal_cam (Watchful)
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>© PORTFOLIO — PERCEPTION / PLANNING / CONTROL LOG</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

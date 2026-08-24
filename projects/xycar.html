@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xycar 자율주행 스케일카 드라이버 — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav>
+  <a href="../index.html" class="tag">← HOME</a>
+  <a href="../index.html#stack">스택</a>
+  <a href="guide-robot.html">안내로봇</a>
+  <a href="capstone2.html">디지털트윈</a>
+  <a href="xycar.html" class="active">사이카</a>
+  <a href="shark.html">SHARK</a>
+  <a href="fma24.html">FMA·24</a>
+  <a href="fma25.html">FMA·25</a>
+</nav>
+
+<section class="page-hero">
+  <a href="../index.html" class="back-link">← 포트폴리오로 돌아가기</a>
+  <h1>ROS 기반 자율주행 스케일카 드라이버 — Xycar</h1>
+  <div class="role">하드웨어 인터페이스 / 드라이버 모듈 개발</div>
+</section>
+
+<section class="project">
+  <div class="project-inner">
+
+    <div class="metrics-row reveal-group">
+      <div class="metric"><span class="num mono">Topic</span><span class="label">비동기 통신 구조 최적화</span></div>
+      <div class="metric"><span class="num mono">Latency</span><span class="label">제어 명령 처리 지연 최소화</span></div>
+      <div class="metric"><span class="num mono">Filtered</span><span class="label">Odometry 정확도 개선</span></div>
+    </div>
+
+    <div class="stack-block reveal">
+      <h4>Stack</h4>
+      <div class="chip-row reveal-group">
+        <span class="chip">ROS</span>
+        <span class="chip">Xycar</span>
+        <span class="chip">LiDAR</span>
+        <span class="chip">Camera</span>
+      </div>
+    </div>
+
+    <div class="prose-block prose-full">
+
+      <div class="prose-section reveal">
+        <h4>개요</h4>
+        <p>대학교 실습용 1/10 스케일 자율주행 플랫폼 Xycar 위에서 <code>xycar_ws</code> 환경의 하드웨어 인터페이스 드라이버 노드를 설계·구현했습니다. 이후 안내 보조 로봇(BADUK), FMA 자율주행 프로젝트 등에서 반복적으로 마주친 ROS 노드 설계·튜닝 감각을 처음 익힌 프로젝트입니다.</p>
+      </div>
+
+      <div class="prose-section reveal">
+        <h4>핵심 구현</h4>
+        <ul class="plain-list">
+          <li><strong>노드 최적화</strong> — 하드웨어 인터페이스 노드를 설계하고, 토픽 기반 비동기 통신 구조로 재구성해 처리 지연을 최소화했습니다.</li>
+          <li><strong>드라이버 세이프티</strong> — 가속·조향 범위를 차량의 물리적 한계 내로 제한해, 급격한 명령 변화로 인한 하드웨어 무리를 방지했습니다.</li>
+          <li><strong>모니터링</strong> — 센서 노드별 데이터 발행 주기를 점검하고 Odometry 데이터 필터링으로 위치 추정 정확도를 개선했습니다.</li>
+          <li><strong>트랙 대응</strong> — 트랙 특성에 맞춰 다양한 속도 영역에서 안정적인 조향 성능을 유지하도록 응답 특성을 튜닝했습니다.</li>
+        </ul>
+      </div>
+
+      <div class="prose-section reveal">
+        <h4>배운 점</h4>
+        <p>ROS 노드 간 데이터 흐름과 토픽 발행 주기가 실제 제어 안정성에 어떻게 영향을 주는지 처음으로 체감한 프로젝트였습니다. 이후 더 큰 규모의 자율주행 스택(FMA 시리즈)에서 노드를 설계할 때 여기서 얻은 감각을 그대로 이어갔습니다.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>© PORTFOLIO — PERCEPTION / PLANNING / CONTROL LOG</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

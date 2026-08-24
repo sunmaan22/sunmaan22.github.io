@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실시간 차량 텔레메트리 및 시각화 — SHARK 2024 — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav>
+  <a href="../index.html" class="tag">← HOME</a>
+  <a href="../index.html#stack">스택</a>
+  <a href="guide-robot.html">안내로봇</a>
+  <a href="capstone2.html">디지털트윈</a>
+  <a href="xycar.html">사이카</a>
+  <a href="shark.html" class="active">SHARK</a>
+  <a href="fma24.html">FMA·24</a>
+  <a href="fma25.html">FMA·25</a>
+</nav>
+
+<section class="page-hero">
+  <a href="../index.html" class="back-link">← 포트폴리오로 돌아가기</a>
+  <h1>실시간 차량 텔레메트리 및 시각화 시스템</h1>
+  <div class="role">센서 캘리브레이션 / MQTT / 대시보드 · 아주대 SHARK 2024</div>
+</section>
+
+<section class="project dark">
+  <div class="project-inner">
+
+    <div class="metrics-row reveal-group">
+      <div class="metric"><span class="num mono">MQTT</span><span class="label">Paho 기반 경량 메시지 브로커</span></div>
+      <div class="metric"><span class="num mono">Latency</span><span class="label">저지연 실시간 상태 전송</span></div>
+      <div class="metric"><span class="num mono">Live</span><span class="label">지도·차트 실시간 시각화</span></div>
+    </div>
+
+    <div class="stack-block reveal">
+      <h4>Stack</h4>
+      <div class="chip-row reveal-group">
+        <span class="chip">Camera-LiDAR Calibration</span>
+        <span class="chip">Odometry</span>
+        <span class="chip">Paho MQTT</span>
+        <span class="chip">실시간 대시보드</span>
+      </div>
+    </div>
+
+    <div class="prose-block prose-full">
+
+      <div class="prose-section reveal">
+        <h4>개요</h4>
+        <p>아주대학교 SHARK 자율주행 동아리에서 진행한 프로젝트로, 차량의 위치·상태 데이터를 실시간으로 관제 시스템에 전달하고 지도·차트 형태로 시각화하는 텔레메트리 시스템을 구축했습니다.</p>
+      </div>
+
+      <div class="prose-section reveal">
+        <h4>핵심 구현</h4>
+        <ul class="plain-list">
+          <li><strong>센서 보정</strong> — 카메라-라이다 좌표계를 일치시키는 캘리브레이션으로 위치·방향 추정 오도메트리 로직을 구현했습니다.</li>
+          <li><strong>경량 프로토콜</strong> — Paho MQTT로 차량 제어 모듈과 관제 시스템 간 메시지 브로커 구조를 설계해 전송 지연을 최소화했습니다.</li>
+          <li><strong>실시간 시각화</strong> — 위치·센서 데이터를 지도·차트로 매핑하는 대시보드를 구축해 판단 근거를 즉시 모니터링할 수 있도록 했습니다.</li>
+          <li><strong>확장성 고려</strong> — 향후 딥러닝 기반 기능 확장을 염두에 두고 데이터 일관성을 유지하는 저장 파이프라인을 설계했습니다.</li>
+        </ul>
+      </div>
+
+      <div class="prose-section reveal">
+        <h4>배운 점</h4>
+        <p>차량 제어와 관제 시스템처럼 물리적으로 분리된 두 시스템을 <strong>경량 메시지 브로커로 느슨하게 결합</strong>하는 설계 감각을 익혔고, 이는 이후 산업 안전 모니터링 프로젝트(디지털 트윈)에서 MQTT 기반 대시보드 연동을 설계할 때 그대로 이어졌습니다.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>© PORTFOLIO — PERCEPTION / PLANNING / CONTROL LOG</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

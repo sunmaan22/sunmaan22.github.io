@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>센서 융합 기반 복합 미션 주행 시스템 — FMA 2024 — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav>
+  <a href="../index.html" class="tag">← HOME</a>
+  <a href="../index.html#stack">스택</a>
+  <a href="guide-robot.html">안내로봇</a>
+  <a href="capstone2.html">디지털트윈</a>
+  <a href="xycar.html">사이카</a>
+  <a href="shark.html">SHARK</a>
+  <a href="fma24.html" class="active">FMA·24</a>
+  <a href="fma25.html">FMA·25</a>
+</nav>
+
+<section class="page-hero">
+  <a href="../index.html" class="back-link">← 포트폴리오로 돌아가기</a>
+  <h1>센서 융합 기반 복합 미션 주행 시스템</h1>
+  <div class="role">인지·판단·제어 모듈 개발 · HL Future Mobility Award 2024</div>
+</section>
+
+<section class="project">
+  <div class="project-inner">
+
+    <div class="metrics-row reveal-group">
+      <div class="metric"><span class="num mono">Cam+LiDAR</span><span class="label">거리·크기 산출 클러스터링</span></div>
+      <div class="metric"><span class="num mono">FSM</span><span class="label">구간별 상태 머신 설계</span></div>
+      <div class="metric"><span class="num mono">PID/Stanley</span><span class="label">조향 파라미터 튜닝</span></div>
+    </div>
+
+    <div class="stack-block reveal">
+      <h4>Stack</h4>
+      <div class="chip-row reveal-group">
+        <span class="chip">OpenCV</span>
+        <span class="chip">LiDAR Clustering</span>
+        <span class="chip">ROS</span>
+        <span class="chip">Git</span>
+        <span class="chip">FSM</span>
+        <span class="chip">PID / Stanley</span>
+      </div>
+    </div>
+
+    <div class="prose-block prose-full">
+
+      <div class="prose-section reveal">
+        <h4>개요</h4>
+        <p>HL Future Mobility Award 2024에 출품한 자율주행 스케일카 프로젝트로, 신호등·교차로·돌발 장애물 등 트랙 구간별로 서로 다른 대응이 필요한 <strong>복합 미션 주행 시스템</strong>을 구현했습니다. 2025년 MORAI 시뮬레이터 기반 프로젝트(FMA 2025)의 전신 격으로, 여기서 다진 인지·계획·제어 구조를 다음 해 프로젝트에서 훨씬 정교하게 확장했습니다.</p>
+      </div>
+
+      <div class="prose-section reveal">
+        <h4>핵심 구현</h4>
+        <ul class="plain-list">
+          <li><strong>인지 고도화</strong> — OpenCV 기반 차선 인식과 LiDAR 클러스터링으로 장애물 유무를 넘어 거리·크기까지 산출했습니다.</li>
+          <li><strong>상태 머신</strong> — 신호등·교차로·돌발 장애물 등 트랙 구간별 대응 전략을 FSM으로 정의해 미션 대응력을 강화했습니다.</li>
+          <li><strong>제어 튜닝</strong> — 차량 물리 특성을 반영한 PID/Stanley 제어로 조향각 급변을 방지하고 고속 주행 안정성을 확보했습니다.</li>
+          <li><strong>모듈 분리 개발</strong> — ROS 환경에서 인지·판단·제어 모듈을 팀원별로 분리 개발하고 Git으로 통합·디버깅했습니다.</li>
+          <li><strong>구조 개선</strong> — 토픽 통합과 FSM 동시화로, 이후 대회부터는 상황별 코드만 최소 수정해도 실행되도록 구조를 개선했습니다.</li>
+        </ul>
+      </div>
+
+      <div class="prose-section reveal">
+        <h4>배운 점</h4>
+        <p>여러 미션이 하나의 FSM 안에서 충돌 없이 전이되도록 설계하는 것이 생각보다 까다롭다는 것을 배웠고, 이때의 경험이 2025년 프로젝트에서 <strong>Lattice Planner + 정지구역 판단 + GPS 음영구간 FSM</strong>처럼 더 복잡한 상태 관리를 설계할 때 직접적인 밑거름이 되었습니다.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>© PORTFOLIO — PERCEPTION / PLANNING / CONTROL LOG</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
