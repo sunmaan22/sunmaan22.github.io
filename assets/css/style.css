@@ -390,8 +390,13 @@ h2.mask.in-view::after{width:64px;}
 .prose-section{margin-bottom:56px;}
 .prose-section:last-child{margin-bottom:0;}
 .prose-section h4{
-  font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
-  color:var(--accent); margin-bottom:18px;
+  font-family:'Pretendard Variable','Pretendard','Apple SD Gothic Neo','Malgun Gothic',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:13.5px; font-weight:700; letter-spacing:-0.005em;
+  color:var(--accent); margin-bottom:20px;
+  display:flex; align-items:center; gap:9px;
+}
+.prose-section h4::before{
+  content:''; width:7px; height:7px; background:var(--accent); border-radius:2px; flex:none; display:inline-block;
 }
 .prose-section h5{font-size:16px; font-weight:700; margin:22px 0 10px; letter-spacing:-0.01em;}
 .prose-section ul.plain-list{list-style:none; margin-top:10px;}
