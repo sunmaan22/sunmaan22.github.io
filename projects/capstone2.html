@@ -88,8 +88,8 @@ flowchart LR
         <h5>Map 좌표 변환 및 MQTT 전송</h5>
         <p>TF2로 작업자 위치를 laser frame에서 map frame으로 변환한 뒤, track_id를 고정 슬롯 이름(작업자A/B/C)에 매핑해 대시보드에서 동일 인물이 계속 같은 라벨로 보이도록 설계했습니다. 슬롯이 모두 찬 상태에서 새 track_id가 들어오면 "미상인원"으로 안전하게 처리하고, 서버 부하를 고려해 5Hz로 전송 주기를 제한했습니다.</p>
 
-        <h5>Personal Cam — 웨어러블 서브프로젝트</h5>
-        <p>같은 캡스톤 트랙에서 IMX500 AI 카메라와 Hailo-8L을 연동한 웨어러블 카메라도 함께 개발했습니다. MediaPipe로 손동작(제스처) 기반 근태 핫키를 구현하고, Hailo Pose Estimation으로 낙상을 감지해 관리자에게 텔레그램 알림을 보내며, 하루 마무리 시 로컬 LLM(Ollama)이 자세·이벤트 데이터를 분석해 관리자용/근로자 건강관리용 리포트를 각각 생성하고 SMTP로 발송하는 파이프라인을 구축했습니다.</p>
+        <h5>Personal Cam — 서브프로젝트</h5>
+        <p>같은 캡스톤 트랙에서 IMX500 AI 카메라와 Hailo-8L을 연동한 Personal 카메라도 함께 개발했습니다. MediaPipe로 손동작(제스처) 기반 근태 핫키를 구현하고, Hailo Pose Estimation으로 낙상을 감지해 관리자에게 텔레그램 알림을 보내며, 하루 마무리 시 로컬 LLM(Ollama)이 자세·이벤트 데이터를 분석해 관리자용/근로자 건강관리용 리포트를 각각 생성하고 SMTP로 발송하는 파이프라인을 구축했습니다.</p>
       </div>
 
       <div class="prose-section reveal">
