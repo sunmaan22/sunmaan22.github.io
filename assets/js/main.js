@@ -78,21 +78,6 @@
     sections.forEach(function(s){ spyIO.observe(s); });
   }
 
-  /* ---- magnetic nav links ---- */
-  if(!reduced){
-    Array.prototype.slice.call(document.querySelectorAll('nav a')).forEach(function(a){
-      a.addEventListener('mousemove', function(e){
-        var rect = a.getBoundingClientRect();
-        var mx = (e.clientX - rect.left - rect.width / 2) * 0.35;
-        var my = (e.clientY - rect.top - rect.height / 2) * 0.35;
-        a.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
-      });
-      a.addEventListener('mouseleave', function(){
-        a.style.transform = '';
-      });
-    });
-  }
-
   /* ---- cursor spotlight glow on cards ---- */
   if(!reduced){
     var glowEls = document.querySelectorAll('.tech-card, .stack-cell, .project-card');

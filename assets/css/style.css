@@ -16,7 +16,7 @@
 *{box-sizing:border-box; margin:0; padding:0;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'Pretendard Variable','Pretendard',-apple-system,sans-serif;
+  font-family:'Pretendard Variable','Pretendard','Apple SD Gothic Neo','Malgun Gothic',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   color:var(--ink);
   background:var(--bg);
   -webkit-font-smoothing:antialiased;
@@ -61,6 +61,12 @@ nav a{
 nav a:hover{background:var(--ink-soft); color:var(--ink); box-shadow:inset 0 0 0 1px var(--accent-soft);}
 nav a.tag{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent); padding-right:10px;}
 nav a.active{background:var(--ink); color:#fff;}
+
+/* inline arrow icons (replaces unicode arrow glyphs, which some fonts render inconsistently) */
+.arrow-icon{
+  width:12px; height:12px; display:inline-block; vertical-align:-1px; margin-right:3px;
+  stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;
+}
 
 .scroll-progress{
   position:fixed; top:0; left:0; height:2.5px; width:0%;

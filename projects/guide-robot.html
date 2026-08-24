@@ -14,7 +14,7 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <nav>
-  <a href="../index.html" class="tag">← HOME</a>
+  <a href="../index.html" class="tag"><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>HOME</a>
   <a href="../index.html#stack">스택</a>
   <a href="guide-robot.html" class="active">안내로봇</a>
   <a href="capstone2.html">디지털트윈</a>
@@ -25,7 +25,7 @@
 </nav>
 
 <section class="page-hero">
-  <a href="../index.html" class="back-link">← 포트폴리오로 돌아가기</a>
+  <a href="../index.html" class="back-link"><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>포트폴리오로 돌아가기</a>
   <h1>시각장애인을 위한 안내 보조 로봇 — BADUK</h1>
   <div class="role">HW 설계·제작 / 인지·판단 / 음성 인터페이스 · 팀 프로젝트 (2인)</div>
 </section>
@@ -35,7 +35,7 @@
 
     <div class="metrics-row reveal-group">
       <div class="metric"><span class="num mono count-up">0.956</span><span class="label">mAP · 신호등/횡단보도 인식</span></div>
-      <div class="metric"><span class="num mono count-up">10ms</span><span class="label">라즈베리파이 → STM32 제어 루프</span></div>
+      <div class="metric"><span class="num mono count-up">10ms</span><span class="label">라즈베리파이 › STM32 제어 루프</span></div>
       <div class="metric"><span class="num mono">MCU</span><span class="label">MCU 계층 (고수준 인지 / 저수준 제어)</span></div>
     </div>
 
@@ -111,7 +111,7 @@ flowchart LR
 
       <div class="prose-section reveal">
         <h4>결과 및 배운 점</h4>
-        <p>하드웨어를 3개월간 두 차례 전면 재설계하며(다이소 박스+스쿠터 바퀴 기반 초기 프레임 → 리튬이온 배터리 4개+PCA9685 통합 전원 보드) 배선 복잡도와 ROS 통신 불안정 문제를 구조적으로 해결하는 경험을 했습니다. 특히 <strong>ROS가 공식 지원하지 않는 MCU에 rosserial을 직접 포팅</strong>하며 통신 계층을 밑바닥부터 이해하게 된 것이 가장 큰 수확이었습니다.</p>
+        <p>하드웨어를 3개월간 두 차례 전면 재설계하며(다이소 박스+스쿠터 바퀴 기반 초기 프레임 › 리튬이온 배터리 4개+PCA9685 통합 전원 보드) 배선 복잡도와 ROS 통신 불안정 문제를 구조적으로 해결하는 경험을 했습니다. 특히 <strong>ROS가 공식 지원하지 않는 MCU에 rosserial을 직접 포팅</strong>하며 통신 계층을 밑바닥부터 이해하게 된 것이 가장 큰 수확이었습니다.</p>
       </div>
 
       <a class="repo-link" href="https://github.com/sunmaan22/guide_robot_for_blind_person" target="_blank" rel="noopener noreferrer">
@@ -126,7 +126,29 @@ flowchart LR
 <footer>© PORTFOLIO — PERCEPTION / PLANNING / CONTROL LOG</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
+<script>
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'base',
+  themeVariables: {
+    background: '#101318',
+    primaryColor: '#161b22',
+    primaryTextColor: '#f5f6f7',
+    primaryBorderColor: '#14c7ae',
+    secondaryColor: '#161b22',
+    tertiaryColor: '#0a0c0f',
+    lineColor: '#14c7ae',
+    textColor: '#f5f6f7',
+    mainBkg: '#161b22',
+    clusterBkg: '#0a0c0f',
+    clusterBorder: '#2a3038',
+    edgeLabelBackground: '#101318',
+    fontFamily: "'Pretendard Variable','Pretendard',-apple-system,sans-serif",
+    fontSize: '13.5px'
+  },
+  flowchart: { curve: 'basis', padding: 16, htmlLabels: true }
+});
+</script>
 <script src="../assets/js/main.js"></script>
 </body>
 </html>

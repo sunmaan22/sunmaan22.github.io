@@ -14,7 +14,7 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <nav>
-  <a href="../index.html" class="tag">← HOME</a>
+  <a href="../index.html" class="tag"><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>HOME</a>
   <a href="../index.html#stack">스택</a>
   <a href="guide-robot.html">안내로봇</a>
   <a href="capstone2.html" class="active">디지털트윈</a>
@@ -25,7 +25,7 @@
 </nav>
 
 <section class="page-hero">
-  <a href="../index.html" class="back-link">← 포트폴리오로 돌아가기</a>
+  <a href="../index.html" class="back-link"><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>포트폴리오로 돌아가기</a>
   <h1>멀티센서 기반 디지털 트윈 안전 모니터링 시스템</h1>
   <div class="role">센서 퓨전 / 엣지 AI / Personal Cam 웨어러블 · 융합캡스톤디자인2</div>
 </section>
@@ -36,14 +36,14 @@
     <div class="metrics-row reveal-group">
       <div class="metric"><span class="num mono count-up">0.1s</span><span class="label">엣지 실시간 탐지 지연</span></div>
       <div class="metric"><span class="num mono">On-device</span><span class="label">GPU 서버 없이 저전력 NPU 추론</span></div>
-      <div class="metric"><span class="num mono">3D→2D</span><span class="label">LiDAR·CCTV 융합 위치 추정</span></div>
+      <div class="metric"><span class="num mono">3D›2D</span><span class="label">LiDAR·CCTV 융합 위치 추정</span></div>
     </div>
 
     <div class="stack-block reveal">
       <h4>Stack</h4>
       <div class="chip-row reveal-group">
         <span class="chip">Raspberry Pi 5</span>
-        <span class="chip">DEEPX NPU (ONNX → DX-COM → .dxnn)</span>
+        <span class="chip">DEEPX NPU (ONNX › DX-COM › .dxnn)</span>
         <span class="chip">YOLOv8-n INT8</span>
         <span class="chip">BYTETracker</span>
         <span class="chip">RPLIDAR A2M12</span>
@@ -63,7 +63,7 @@
       </div>
 
       <div class="prose-section reveal">
-        <h4>아키텍처 — 센서 → NPU 추론 → 융합 → 관제</h4>
+        <h4>아키텍처 — 센서 › NPU 추론 › 융합 › 관제</h4>
         <div class="diagram-wrap">
 <pre class="mermaid">
 flowchart LR
@@ -99,10 +99,16 @@ flowchart LR
         <p>H.265 메인스트림 대신 H.264 서브스트림을 채택하고 NTP 동기화로 카메라·LiDAR 간 타임스탬프를 일치시키는 등, <strong>정확도보다 실시간성과 안정성을 우선해야 하는 엣지 시스템 특유의 트레이드오프</strong>를 다루는 경험을 했습니다. 위험구역(Warn Zone) 판정 같은 규칙 엔진은 이번 단계에서는 대시보드 확장 포인트로 남겨두고, 센서 퓨전부터 관제 데이터 파이프라인까지 신뢰성 있게 완성하는 데 집중했습니다.</p>
       </div>
 
-      <a class="repo-link" href="https://github.com/sunmaan22/personal_cam" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C7.5 2.8 6.4 3.1 6.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 5 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
-        GitHub — personal_cam (Watchful)
-      </a>
+      <div class="chip-row" style="margin-top:8px;">
+        <a class="repo-link" href="https://github.com/Jeomyo/multi-sensor-safety-monitor" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C7.5 2.8 6.4 3.1 6.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 5 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+          GitHub — multi-sensor-safety-monitor
+        </a>
+        <a class="repo-link" href="https://github.com/sunmaan22/personal_cam" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C7.5 2.8 6.4 3.1 6.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 5 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+          GitHub — personal_cam (Watchful)
+        </a>
+      </div>
 
     </div>
   </div>
@@ -111,7 +117,29 @@ flowchart LR
 <footer>© PORTFOLIO — PERCEPTION / PLANNING / CONTROL LOG</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
+<script>
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'base',
+  themeVariables: {
+    background: '#101318',
+    primaryColor: '#161b22',
+    primaryTextColor: '#f5f6f7',
+    primaryBorderColor: '#14c7ae',
+    secondaryColor: '#161b22',
+    tertiaryColor: '#0a0c0f',
+    lineColor: '#14c7ae',
+    textColor: '#f5f6f7',
+    mainBkg: '#161b22',
+    clusterBkg: '#0a0c0f',
+    clusterBorder: '#2a3038',
+    edgeLabelBackground: '#101318',
+    fontFamily: "'Pretendard Variable','Pretendard',-apple-system,sans-serif",
+    fontSize: '13.5px'
+  },
+  flowchart: { curve: 'basis', padding: 16, htmlLabels: true }
+});
+</script>
 <script src="../assets/js/main.js"></script>
 </body>
 </html>

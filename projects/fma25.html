@@ -14,7 +14,7 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <nav>
-  <a href="../index.html" class="tag">← HOME</a>
+  <a href="../index.html" class="tag"><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>HOME</a>
   <a href="../index.html#stack">스택</a>
   <a href="guide-robot.html">안내로봇</a>
   <a href="capstone2.html">디지털트윈</a>
@@ -25,7 +25,7 @@
 </nav>
 
 <section class="page-hero">
-  <a href="../index.html" class="back-link">← 포트폴리오로 돌아가기</a>
+  <a href="../index.html" class="back-link"><svg class="arrow-icon" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>포트폴리오로 돌아가기</a>
   <h1>MORAI 시뮬레이터 기반 동적 미션 대응 자율주행 제어 시스템</h1>
   <div class="role">인지·계획·제어 풀스택 개발 · HL Future Mobility Award 2025</div>
 </section>
@@ -57,7 +57,7 @@
 
       <div class="prose-section reveal">
         <h4>개요</h4>
-        <p>MORAI 자율주행 시뮬레이터 위에서 GPS/IMU 측위, 카메라·라이다 인지, 전역/지역 경로 추종, 정적 장애물 회피, 신호등 인식 및 정지선 판단, GPS 음영구간 대응까지 <strong>자율주행 스택 전 구간을 인지부터 제어까지 직접 구현</strong>한 프로젝트입니다. 센서 → 측위/인지 → 판단/계획 → 제어로 이어지는 파이프라인을 노드 단위로 설계했습니다.</p>
+        <p>MORAI 자율주행 시뮬레이터 위에서 GPS/IMU 측위, 카메라·라이다 인지, 전역/지역 경로 추종, 정적 장애물 회피, 신호등 인식 및 정지선 판단, GPS 음영구간 대응까지 <strong>자율주행 스택 전 구간을 인지부터 제어까지 직접 구현</strong>한 프로젝트입니다. 센서 › 측위/인지 › 판단/계획 › 제어로 이어지는 파이프라인을 노드 단위로 설계했습니다.</p>
       </div>
 
       <div class="prose-section reveal">
@@ -77,7 +77,7 @@ flowchart LR
     TL --> STOPAREA["정지구역 판단"]
     LATTICE --> PP["Pure Pursuit + PID"]
     STOPAREA --> PP
-    PP --> CTRL["/ctrl_cmd_0 → MORAI 차량"]
+    PP --> CTRL["/ctrl_cmd_0 › MORAI 차량"]
 </pre>
         </div>
       </div>
@@ -91,7 +91,7 @@ flowchart LR
         <p>차량 진행방향 좌표계로 변환한 뒤 좌우 오프셋을 준 3차 다항식 후보 경로 13개를 생성하고, 장애물 거리·우측 경계 거리·도로 곡률·금지구역 포함 여부를 종합한 가중치로 최소 비용 경로를 실시간 선택합니다.</p>
 
         <h5>인지 — 탐지·추적·융합</h5>
-        <p>YOLOv10으로 프레임 단위 객체를 탐지하고, ByteTrack 방식의 2단계(고신뢰도→저신뢰도) IoU 헝가리안 매칭으로 트랙 ID를 유지합니다. 카메라-라이다 캘리브레이션으로 라이다 포인트를 이미지에 투영해 YOLO bbox와 매칭하고, 일정 시간 거리 변동폭을 관찰해 정적/동적 장애물을 구분한 뒤 STOP/SLOW/NORMAL 3단계 속도 모드를 산출합니다. 신호등은 HSV 마스크(CLAHE 보정) + Hough Circle Transform으로 적색을 검출하고, 실패 시 컨투어 원형도 기반 백업 검출로 안정화했습니다.</p>
+        <p>YOLOv10으로 프레임 단위 객체를 탐지하고, ByteTrack 방식의 2단계(고신뢰도›저신뢰도) IoU 헝가리안 매칭으로 트랙 ID를 유지합니다. 카메라-라이다 캘리브레이션으로 라이다 포인트를 이미지에 투영해 YOLO bbox와 매칭하고, 일정 시간 거리 변동폭을 관찰해 정적/동적 장애물을 구분한 뒤 STOP/SLOW/NORMAL 3단계 속도 모드를 산출합니다. 신호등은 HSV 마스크(CLAHE 보정) + Hough Circle Transform으로 적색을 검출하고, 실패 시 컨투어 원형도 기반 백업 검출로 안정화했습니다.</p>
 
         <h5>GPS 음영구간 대응</h5>
         <p>GPS 좌표가 <code>(0,0,0)</code>으로 들어오면 음영구간 진입으로 판단해 카메라 영상을 BEV(Bird's Eye View)로 변환한 뒤 HSV 차선 검출 기반 PID 제어로 전환하는 FSM을 구현해, 위성 신호가 끊겨도 안전하게 주행을 이어가도록 했습니다.</p>
@@ -114,7 +114,29 @@ flowchart LR
 <footer>© PORTFOLIO — PERCEPTION / PLANNING / CONTROL LOG</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
+<script>
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'base',
+  themeVariables: {
+    background: '#101318',
+    primaryColor: '#161b22',
+    primaryTextColor: '#f5f6f7',
+    primaryBorderColor: '#14c7ae',
+    secondaryColor: '#161b22',
+    tertiaryColor: '#0a0c0f',
+    lineColor: '#14c7ae',
+    textColor: '#f5f6f7',
+    mainBkg: '#161b22',
+    clusterBkg: '#0a0c0f',
+    clusterBorder: '#2a3038',
+    edgeLabelBackground: '#101318',
+    fontFamily: "'Pretendard Variable','Pretendard',-apple-system,sans-serif",
+    fontSize: '13.5px'
+  },
+  flowchart: { curve: 'basis', padding: 16, htmlLabels: true }
+});
+</script>
 <script src="../assets/js/main.js"></script>
 </body>
 </html>
