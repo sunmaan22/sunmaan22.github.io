@@ -149,6 +149,19 @@ section{position:relative;}
 .page-hero h1{font-size:clamp(30px,5.4vw,54px); font-weight:700; letter-spacing:-0.02em; max-width:820px; margin:0 auto 18px; text-wrap:balance;}
 .page-hero .role{font-size:15px; color:var(--muted); font-weight:500;}
 
+/* ---------- CHAPTER PROGRESS STRIP (combined multi-project pages) ---------- */
+.progress-strip{
+  display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px;
+  max-width:720px; margin:0 auto; padding:0 24px 70px;
+}
+.progress-item{
+  font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; color:var(--muted);
+  border:1px solid var(--line); padding:9px 18px; border-radius:999px;
+  transition:border-color .25s ease, color .25s ease, background .25s ease;
+}
+.progress-item:hover{border-color:var(--accent); color:var(--accent); background:var(--accent-soft);}
+.progress-arrow{width:16px; height:16px; stroke:var(--muted); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex:none;}
+
 /* ---------- TECH MARQUEE (icon cards) ---------- */
 .marquee-wrap{
   background:var(--bg-dark); border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark);
